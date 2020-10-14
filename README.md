@@ -1,3 +1,13 @@
+# Fork Details
+
+This repository is forked to add suffixes to contracts, interfaces and libraries within the `@openzeppelin/contracts-ethereum-package` package.
+
+This prevents non-unique identifier clashes, and therefore makes it possible to use upgradeable and non-upgradeable smart contracts from OpenZeppelin within one project.
+
+Otherwise, the repository should stay even with [OpenZeppelin/openzeppelin-contracts-ethereum-package](https://github.com/OpenZeppelin/openzeppelin-contracts-ethereum-package).
+
+---
+
 # <img src="logo.png" alt="OpenZeppelin" height="40px">
 
 ## OpenZeppelin Contracts Ethereum Package
@@ -42,7 +52,7 @@ $ npx oz link @openzeppelin/contracts-ethereum-package
 $ npx oz deploy @openzeppelin/contracts-ethereum-package/ERC20PresetMinterPauserUpgradeSafe
 ```
 
-To deploy a contract, use the `openzeppelin deploy` command. 
+To deploy a contract, use the `openzeppelin deploy` command.
 
 As an example, you can run the following to deploy an upgradeable ERC20 named MyToken, with symbol MYT and 18 decimals, with the deployer being a Minter and a Pauser.
 
