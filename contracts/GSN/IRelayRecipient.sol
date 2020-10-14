@@ -5,7 +5,7 @@ pragma solidity ^0.6.0;
  *
  * TIP: You don't need to write an implementation yourself! Inherit from {GSNRecipient} instead.
  */
-interface IRelayRecipient {
+interface IRelayRecipientUpgradeSafe {
     /**
      * @dev Returns the address of the {IRelayHub} instance this recipient interacts with.
      */

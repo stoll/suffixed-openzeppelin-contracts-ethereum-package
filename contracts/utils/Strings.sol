@@ -3,7 +3,7 @@ pragma solidity ^0.6.0;
 /**
  * @dev String operations.
  */
-library Strings {
+library StringsUpgradeSafe {
     /**
      * @dev Converts a `uint256` to its ASCII `string` representation.
      */

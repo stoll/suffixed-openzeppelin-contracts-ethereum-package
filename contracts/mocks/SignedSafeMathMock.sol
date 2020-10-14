@@ -18,19 +18,19 @@ contract SignedSafeMathMockUpgradeSafe is Initializable {
     }
 
     function mul(int256 a, int256 b) public pure returns (int256) {
-        return SignedSafeMath.mul(a, b);
+        return SignedSafeMathUpgradeSafe.mul(a, b);
     }
 
     function div(int256 a, int256 b) public pure returns (int256) {
-        return SignedSafeMath.div(a, b);
+        return SignedSafeMathUpgradeSafe.div(a, b);
     }
 
     function sub(int256 a, int256 b) public pure returns (int256) {
-        return SignedSafeMath.sub(a, b);
+        return SignedSafeMathUpgradeSafe.sub(a, b);
     }
 
     function add(int256 a, int256 b) public pure returns (int256) {
-        return SignedSafeMath.add(a, b);
+        return SignedSafeMathUpgradeSafe.add(a, b);
     }
 
     uint256[50] private __gap;

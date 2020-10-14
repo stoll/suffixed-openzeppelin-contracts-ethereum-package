@@ -24,12 +24,12 @@ import "../Initializable.sol";
  * and pauser roles to aother accounts
  */
 contract ERC721PresetMinterPauserAutoIdUpgradeSafe is Initializable, ContextUpgradeSafe, AccessControlUpgradeSafe, ERC721BurnableUpgradeSafe, ERC721PausableUpgradeSafe {
-    using Counters for Counters.Counter;
+    using CountersUpgradeSafe for CountersUpgradeSafe.Counter;
 
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
 
-    Counters.Counter private _tokenIdTracker;
+    CountersUpgradeSafe.Counter private _tokenIdTracker;
 
     /**
      * @dev Grants `DEFAULT_ADMIN_ROLE` and `MINTER_ROLE`to the account that

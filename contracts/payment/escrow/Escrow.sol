@@ -34,8 +34,8 @@ contract EscrowUpgradeSafe is Initializable, OwnableUpgradeSafe {
 
     }
 
-    using SafeMath for uint256;
-    using Address for address payable;
+    using SafeMathUpgradeSafe for uint256;
+    using AddressUpgradeSafe for address payable;
 
     event Deposited(address indexed payee, uint256 weiAmount);
     event Withdrawn(address indexed payee, uint256 weiAmount);

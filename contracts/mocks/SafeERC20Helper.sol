@@ -141,21 +141,21 @@ contract ERC20NoReturnMockUpgradeSafe is Initializable, ContextUpgradeSafe {
 }
 
 contract SafeERC20MockUpgradeSafe is Initializable, ContextUpgradeSafe {
-    using SafeERC20 for IERC20;
+    using SafeERC20UpgradeSafe for IERC20UpgradeSafe;
 
-    IERC20 private _token;
+    IERC20UpgradeSafe private _token;
 
 
-    constructor(IERC20 token) public  {
+    constructor(IERC20UpgradeSafe token) public  {
         __SafeERC20Mock_init(token);
     }
 
-    function __SafeERC20Mock_init(IERC20 token) internal initializer {
+    function __SafeERC20Mock_init(IERC20UpgradeSafe token) internal initializer {
         __Context_init_unchained();
         __SafeERC20Mock_init_unchained(token);
     }
 
-    function __SafeERC20Mock_init_unchained(IERC20 token) internal initializer {
+    function __SafeERC20Mock_init_unchained(IERC20UpgradeSafe token) internal initializer {
 
 
         _token = token;

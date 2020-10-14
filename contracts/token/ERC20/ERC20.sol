@@ -28,11 +28,11 @@ import "../../Initializable.sol";
  *
  * Finally, the non-standard {decreaseAllowance} and {increaseAllowance}
  * functions have been added to mitigate the well-known issues around setting
- * allowances. See {IERC20-approve}.
+ * allowances. See {IERC20UpgradeSafe-approve}.
  */
-contract ERC20UpgradeSafe is Initializable, ContextUpgradeSafe, IERC20 {
-    using SafeMath for uint256;
-    using Address for address;
+contract ERC20UpgradeSafe is Initializable, ContextUpgradeSafe, IERC20UpgradeSafe {
+    using SafeMathUpgradeSafe for uint256;
+    using AddressUpgradeSafe for address;
 
     mapping (address => uint256) private _balances;
 
@@ -95,28 +95,28 @@ contract ERC20UpgradeSafe is Initializable, ContextUpgradeSafe, IERC20 {
      *
      * NOTE: This information is only used for _display_ purposes: it in
      * no way affects any of the arithmetic of the contract, including
-     * {IERC20-balanceOf} and {IERC20-transfer}.
+     * {IERC20UpgradeSafe-balanceOf} and {IERC20UpgradeSafe-transfer}.
      */
     function decimals() public view returns (uint8) {
         return _decimals;
     }
 
     /**
-     * @dev See {IERC20-totalSupply}.
+     * @dev See {IERC20UpgradeSafe-totalSupply}.
      */
     function totalSupply() public view override returns (uint256) {
         return _totalSupply;
     }
 
     /**
-     * @dev See {IERC20-balanceOf}.
+     * @dev See {IERC20UpgradeSafe-balanceOf}.
      */
     function balanceOf(address account) public view override returns (uint256) {
         return _balances[account];
     }
 
     /**
-     * @dev See {IERC20-transfer}.
+     * @dev See {IERC20UpgradeSafe-transfer}.
      *
      * Requirements:
      *
@@ -129,14 +129,14 @@ contract ERC20UpgradeSafe is Initializable, ContextUpgradeSafe, IERC20 {
     }
 
     /**
-     * @dev See {IERC20-allowance}.
+     * @dev See {IERC20UpgradeSafe-allowance}.
      */
     function allowance(address owner, address spender) public view virtual override returns (uint256) {
         return _allowances[owner][spender];
     }
 
     /**
-     * @dev See {IERC20-approve}.
+     * @dev See {IERC20UpgradeSafe-approve}.
      *
      * Requirements:
      *
@@ -148,7 +148,7 @@ contract ERC20UpgradeSafe is Initializable, ContextUpgradeSafe, IERC20 {
     }
 
     /**
-     * @dev See {IERC20-transferFrom}.
+     * @dev See {IERC20UpgradeSafe-transferFrom}.
      *
      * Emits an {Approval} event indicating the updated allowance. This is not
      * required by the EIP. See the note at the beginning of {ERC20};
@@ -169,7 +169,7 @@ contract ERC20UpgradeSafe is Initializable, ContextUpgradeSafe, IERC20 {
      * @dev Atomically increases the allowance granted to `spender` by the caller.
      *
      * This is an alternative to {approve} that can be used as a mitigation for
-     * problems described in {IERC20-approve}.
+     * problems described in {IERC20UpgradeSafe-approve}.
      *
      * Emits an {Approval} event indicating the updated allowance.
      *
@@ -186,7 +186,7 @@ contract ERC20UpgradeSafe is Initializable, ContextUpgradeSafe, IERC20 {
      * @dev Atomically decreases the allowance granted to `spender` by the caller.
      *
      * This is an alternative to {approve} that can be used as a mitigation for
-     * problems described in {IERC20-approve}.
+     * problems described in {IERC20UpgradeSafe-approve}.
      *
      * Emits an {Approval} event indicating the updated allowance.
      *

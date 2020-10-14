@@ -7,7 +7,7 @@ pragma solidity ^0.6.0;
  * See the https://github.com/OpenZeppelin/openzeppelin-gsn-helpers[OpenZeppelin GSN helpers] for more information on
  * how to deploy an instance of `RelayHub` on your local test network.
  */
-interface IRelayHub {
+interface IRelayHubUpgradeSafe {
     // Relay management
 
     /**

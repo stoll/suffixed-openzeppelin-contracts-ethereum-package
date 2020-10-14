@@ -16,7 +16,7 @@ pragma solidity ^0.6.0;
  * Can be combined with {SafeMath} to extend it to smaller types, by performing
  * all math on `uint256` and then downcasting.
  */
-library SafeCast {
+library SafeCastUpgradeSafe {
 
     /**
      * @dev Returns the downcasted uint128 from uint256, reverting on

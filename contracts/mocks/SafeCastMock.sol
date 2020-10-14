@@ -17,8 +17,8 @@ contract SafeCastMockUpgradeSafe is Initializable {
 
     }
 
-    using SafeCast for uint;
-    using SafeCast for int;
+    using SafeCastUpgradeSafe for uint;
+    using SafeCastUpgradeSafe for int;
 
     function toUint256(int a) public pure returns (uint256) {
         return a.toUint256();

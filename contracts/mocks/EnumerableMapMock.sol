@@ -3,25 +3,25 @@ pragma solidity ^0.6.0;
 import "../utils/EnumerableMap.sol";
 import "../Initializable.sol";
 
-contract EnumerableMapMockUpgradeSafe is Initializable {
+contract EnumerableMapUpgradeSafeMockUpgradeSafe is Initializable {
     constructor() public  {
-        __EnumerableMapMock_init();
+        __EnumerableMapUpgradeSafeMock_init();
     }
 
-    function __EnumerableMapMock_init() internal initializer {
-        __EnumerableMapMock_init_unchained();
+    function __EnumerableMapUpgradeSafeMock_init() internal initializer {
+        __EnumerableMapUpgradeSafeMock_init_unchained();
     }
 
-    function __EnumerableMapMock_init_unchained() internal initializer {
+    function __EnumerableMapUpgradeSafeMock_init_unchained() internal initializer {
 
 
     }
 
-    using EnumerableMap for EnumerableMap.UintToAddressMap;
+    using EnumerableMapUpgradeSafe for EnumerableMapUpgradeSafe.UintToAddressMapUpgradeSafe;
 
     event OperationResult(bool result);
 
-    EnumerableMap.UintToAddressMap private _map;
+    EnumerableMapUpgradeSafe.UintToAddressMapUpgradeSafe private _map;
 
     function contains(uint256 key) public view returns (bool) {
         return _map.contains(key);

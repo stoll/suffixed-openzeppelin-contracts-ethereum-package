@@ -3,7 +3,7 @@ pragma solidity ^0.6.0;
 /**
  * @dev These functions deal with verification of Merkle trees (hash trees),
  */
-library MerkleProof {
+library MerkleProofUpgradeSafe {
     /**
      * @dev Returns true if a `leaf` can be proved to be a part of a Merkle tree
      * defined by `root`. For this, a `proof` must be provided, containing

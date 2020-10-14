@@ -6,7 +6,7 @@ pragma solidity ^0.6.0;
  * Used by contracts that will be registered as implementers in the
  * {IERC1820Registry}.
  */
-interface IERC1820Implementer {
+interface IERC1820ImplementerUpgradeSafe {
     /**
      * @dev Returns a special value (`ERC1820_ACCEPT_MAGIC`) if this contract
      * implements `interfaceHash` for `account`.

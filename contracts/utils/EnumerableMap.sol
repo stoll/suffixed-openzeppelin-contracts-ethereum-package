@@ -14,24 +14,24 @@ pragma solidity ^0.6.0;
  * ```
  * contract Example {
  *     // Add the library methods
- *     using EnumerableMap for EnumerableMap.UintToAddressMap;
+ *     using EnumerableMapUpgradeSafe for EnumerableMapUpgradeSafe.UintToAddressMapUpgradeSafe;
  *
  *     // Declare a set state variable
- *     EnumerableMap.UintToAddressMap private myMap;
+ *     EnumerableMapUpgradeSafe.UintToAddressMapUpgradeSafe private myMap;
  * }
  * ```
  *
- * As of v3.0.0, only maps of type `uint256 -> address` (`UintToAddressMap`) are
+ * As of v3.0.0, only maps of type `uint256 -> address` (`UintToAddressMapUpgradeSafe`) are
  * supported.
  */
-library EnumerableMap {
+library EnumerableMapUpgradeSafe {
     // To implement this library for multiple types with as little code
     // repetition as possible, we write it in terms of a generic Map type with
     // bytes32 keys and values.
     // The Map implementation uses private functions, and user-facing
     // implementations (such as Uint256ToAddressMap) are just wrappers around
     // the underlying Map.
-    // This means that we can only create new EnumerableMaps for types that fit
+    // This means that we can only create new EnumerableMapUpgradeSafes for types that fit
     // in bytes32.
 
     struct MapEntry {
@@ -135,7 +135,7 @@ library EnumerableMap {
     * - `index` must be strictly less than {length}.
     */
     function _at(Map storage map, uint256 index) private view returns (bytes32, bytes32) {
-        require(map._entries.length > index, "EnumerableMap: index out of bounds");
+        require(map._entries.length > index, "EnumerableMapUpgradeSafe: index out of bounds");
 
         MapEntry storage entry = map._entries[index];
         return (entry._key, entry._value);
@@ -149,7 +149,7 @@ library EnumerableMap {
      * - `key` must be in the map.
      */
     function _get(Map storage map, bytes32 key) private view returns (bytes32) {
-        return _get(map, key, "EnumerableMap: nonexistent key");
+        return _get(map, key, "EnumerableMapUpgradeSafe: nonexistent key");
     }
 
     /**
@@ -161,9 +161,9 @@ library EnumerableMap {
         return map._entries[keyIndex - 1]._value; // All indexes are 1-based
     }
 
-    // UintToAddressMap
+    // UintToAddressMapUpgradeSafe
 
-    struct UintToAddressMap {
+    struct UintToAddressMapUpgradeSafe {
         Map _inner;
     }
 
@@ -174,7 +174,7 @@ library EnumerableMap {
      * Returns true if the key was added to the map, that is if it was not
      * already present.
      */
-    function set(UintToAddressMap storage map, uint256 key, address value) internal returns (bool) {
+    function set(UintToAddressMapUpgradeSafe storage map, uint256 key, address value) internal returns (bool) {
         return _set(map._inner, bytes32(key), bytes32(uint256(value)));
     }
 
@@ -183,21 +183,21 @@ library EnumerableMap {
      *
      * Returns true if the key was removed from the map, that is if it was present.
      */
-    function remove(UintToAddressMap storage map, uint256 key) internal returns (bool) {
+    function remove(UintToAddressMapUpgradeSafe storage map, uint256 key) internal returns (bool) {
         return _remove(map._inner, bytes32(key));
     }
 
     /**
      * @dev Returns true if the key is in the map. O(1).
      */
-    function contains(UintToAddressMap storage map, uint256 key) internal view returns (bool) {
+    function contains(UintToAddressMapUpgradeSafe storage map, uint256 key) internal view returns (bool) {
         return _contains(map._inner, bytes32(key));
     }
 
     /**
      * @dev Returns the number of elements in the map. O(1).
      */
-    function length(UintToAddressMap storage map) internal view returns (uint256) {
+    function length(UintToAddressMapUpgradeSafe storage map) internal view returns (uint256) {
         return _length(map._inner);
     }
 
@@ -210,7 +210,7 @@ library EnumerableMap {
     *
     * - `index` must be strictly less than {length}.
     */
-    function at(UintToAddressMap storage map, uint256 index) internal view returns (uint256, address) {
+    function at(UintToAddressMapUpgradeSafe storage map, uint256 index) internal view returns (uint256, address) {
         (bytes32 key, bytes32 value) = _at(map._inner, index);
         return (uint256(key), address(uint256(value)));
     }
@@ -222,14 +222,14 @@ library EnumerableMap {
      *
      * - `key` must be in the map.
      */
-    function get(UintToAddressMap storage map, uint256 key) internal view returns (address) {
+    function get(UintToAddressMapUpgradeSafe storage map, uint256 key) internal view returns (address) {
         return address(uint256(_get(map._inner, bytes32(key))));
     }
 
     /**
      * @dev Same as {get}, with a custom error message when `key` is not in the map.
      */
-    function get(UintToAddressMap storage map, uint256 key, string memory errorMessage) internal view returns (address) {
+    function get(UintToAddressMapUpgradeSafe storage map, uint256 key, string memory errorMessage) internal view returns (address) {
         return address(uint256(_get(map._inner, bytes32(key), errorMessage)));
     }
 }

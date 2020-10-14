@@ -17,11 +17,11 @@ contract EnumerableSetMockUpgradeSafe is Initializable {
 
     }
 
-    using EnumerableSet for EnumerableSet.AddressSet;
+    using EnumerableSetUpgradeSafe for EnumerableSetUpgradeSafe.AddressSet;
 
     event OperationResult(bool result);
 
-    EnumerableSet.AddressSet private _set;
+    EnumerableSetUpgradeSafe.AddressSet private _set;
 
     function contains(address value) public view returns (bool) {
         return _set.contains(value);

@@ -11,7 +11,7 @@ import "../Initializable.sol";
  * sure to account for this in their economic and threat model.
  */
 contract GSNRecipientSignatureUpgradeSafe is Initializable, GSNRecipientUpgradeSafe {
-    using ECDSA for bytes32;
+    using ECDSAUpgradeSafe for bytes32;
 
     address private _trustedSigner;
 

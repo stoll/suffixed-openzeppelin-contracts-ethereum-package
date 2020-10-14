@@ -18,18 +18,18 @@ import "../../Initializable.sol";
  *
  * Support for ERC20 is included in this contract, as specified by the EIP: both
  * the ERC777 and ERC20 interfaces can be safely used when interacting with it.
- * Both {IERC777-Sent} and {IERC20-Transfer} events are emitted on token
+ * Both {IERC777UpgradeSafe-Sent} and {IERC20UpgradeSafe-Transfer} events are emitted on token
  * movements.
  *
- * Additionally, the {IERC777-granularity} value is hard-coded to `1`, meaning that there
+ * Additionally, the {IERC777UpgradeSafe-granularity} value is hard-coded to `1`, meaning that there
  * are no special restrictions in the amount of tokens that created, moved, or
  * destroyed. This makes integration with ERC20 applications seamless.
  */
-contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20 {
-    using SafeMath for uint256;
-    using Address for address;
+contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777UpgradeSafe, IERC20UpgradeSafe {
+    using SafeMathUpgradeSafe for uint256;
+    using AddressUpgradeSafe for address;
 
-    IERC1820Registry constant internal _ERC1820_REGISTRY = IERC1820Registry(0x1820a4B7618BdE71Dce8cdc73aAB6C95905faD24);
+    IERC1820RegistryUpgradeSafe constant internal _ERC1820_REGISTRY = IERC1820Registry(0x1820a4B7618BdE71Dce8cdc73aAB6C95905faD24);
 
     mapping(address => uint256) private _balances;
 
@@ -98,14 +98,14 @@ contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20
 
 
     /**
-     * @dev See {IERC777-name}.
+     * @dev See {IERC777UpgradeSafe-name}.
      */
     function name() public view override returns (string memory) {
         return _name;
     }
 
     /**
-     * @dev See {IERC777-symbol}.
+     * @dev See {IERC777UpgradeSafe-symbol}.
      */
     function symbol() public view override returns (string memory) {
         return _symbol;
@@ -122,7 +122,7 @@ contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20
     }
 
     /**
-     * @dev See {IERC777-granularity}.
+     * @dev See {IERC777UpgradeSafe-granularity}.
      *
      * This implementation always returns `1`.
      */
@@ -131,30 +131,30 @@ contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20
     }
 
     /**
-     * @dev See {IERC777-totalSupply}.
+     * @dev See {IERC777UpgradeSafe-totalSupply}.
      */
-    function totalSupply() public view override(IERC20, IERC777) returns (uint256) {
+    function totalSupply() public view override(IERC20UpgradeSafe, IERC777UpgradeSafe) returns (uint256) {
         return _totalSupply;
     }
 
     /**
      * @dev Returns the amount of tokens owned by an account (`tokenHolder`).
      */
-    function balanceOf(address tokenHolder) public view override(IERC20, IERC777) returns (uint256) {
+    function balanceOf(address tokenHolder) public view override(IERC20UpgradeSafe, IERC777UpgradeSafe) returns (uint256) {
         return _balances[tokenHolder];
     }
 
     /**
-     * @dev See {IERC777-send}.
+     * @dev See {IERC777UpgradeSafe-send}.
      *
-     * Also emits a {IERC20-Transfer} event for ERC20 compatibility.
+     * Also emits a {IERC20UpgradeSafe-Transfer} event for ERC20 compatibility.
      */
     function send(address recipient, uint256 amount, bytes memory data) public override  {
         _send(_msgSender(), recipient, amount, data, "", true);
     }
 
     /**
-     * @dev See {IERC20-transfer}.
+     * @dev See {IERC20UpgradeSafe-transfer}.
      *
      * Unlike `send`, `recipient` is _not_ required to implement the {IERC777Recipient}
      * interface if it is a contract.
@@ -176,16 +176,16 @@ contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20
     }
 
     /**
-     * @dev See {IERC777-burn}.
+     * @dev See {IERC777UpgradeSafe-burn}.
      *
-     * Also emits a {IERC20-Transfer} event for ERC20 compatibility.
+     * Also emits a {IERC20UpgradeSafe-Transfer} event for ERC20 compatibility.
      */
     function burn(uint256 amount, bytes memory data) public override  {
         _burn(_msgSender(), amount, data, "");
     }
 
     /**
-     * @dev See {IERC777-isOperatorFor}.
+     * @dev See {IERC777UpgradeSafe-isOperatorFor}.
      */
     function isOperatorFor(
         address operator,
@@ -197,7 +197,7 @@ contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20
     }
 
     /**
-     * @dev See {IERC777-authorizeOperator}.
+     * @dev See {IERC777UpgradeSafe-authorizeOperator}.
      */
     function authorizeOperator(address operator) public override  {
         require(_msgSender() != operator, "ERC777: authorizing self as operator");
@@ -212,7 +212,7 @@ contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20
     }
 
     /**
-     * @dev See {IERC777-revokeOperator}.
+     * @dev See {IERC777UpgradeSafe-revokeOperator}.
      */
     function revokeOperator(address operator) public override  {
         require(operator != _msgSender(), "ERC777: revoking self as operator");
@@ -227,16 +227,16 @@ contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20
     }
 
     /**
-     * @dev See {IERC777-defaultOperators}.
+     * @dev See {IERC777UpgradeSafe-defaultOperators}.
      */
     function defaultOperators() public view override returns (address[] memory) {
         return _defaultOperatorsArray;
     }
 
     /**
-     * @dev See {IERC777-operatorSend}.
+     * @dev See {IERC777UpgradeSafe-operatorSend}.
      *
-     * Emits {Sent} and {IERC20-Transfer} events.
+     * Emits {Sent} and {IERC20UpgradeSafe-Transfer} events.
      */
     function operatorSend(
         address sender,
@@ -252,9 +252,9 @@ contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20
     }
 
     /**
-     * @dev See {IERC777-operatorBurn}.
+     * @dev See {IERC777UpgradeSafe-operatorBurn}.
      *
-     * Emits {Burned} and {IERC20-Transfer} events.
+     * Emits {Burned} and {IERC20UpgradeSafe-Transfer} events.
      */
     function operatorBurn(address account, uint256 amount, bytes memory data, bytes memory operatorData) public override {
         require(isOperatorFor(_msgSender(), account), "ERC777: caller is not an operator for holder");
@@ -262,7 +262,7 @@ contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20
     }
 
     /**
-     * @dev See {IERC20-allowance}.
+     * @dev See {IERC20UpgradeSafe-allowance}.
      *
      * Note that operator and allowance concepts are orthogonal: operators may
      * not have allowance, and accounts with allowance may not be operators
@@ -273,7 +273,7 @@ contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20
     }
 
     /**
-     * @dev See {IERC20-approve}.
+     * @dev See {IERC20UpgradeSafe-approve}.
      *
      * Note that accounts cannot have allowance issued by their operators.
      */
@@ -284,13 +284,13 @@ contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20
     }
 
    /**
-    * @dev See {IERC20-transferFrom}.
+    * @dev See {IERC20UpgradeSafe-transferFrom}.
     *
     * Note that operator and allowance concepts are orthogonal: operators cannot
     * call `transferFrom` (unless they have allowance), and accounts with
     * allowance cannot call `operatorSend` (unless they are operators).
     *
-    * Emits {Sent}, {IERC20-Transfer} and {IERC20-Approval} events.
+    * Emits {Sent}, {IERC20UpgradeSafe-Transfer} and {IERC20UpgradeSafe-Approval} events.
     */
     function transferFrom(address holder, address recipient, uint256 amount) public override returns (bool) {
         require(recipient != address(0), "ERC777: transfer to the zero address");
@@ -317,7 +317,7 @@ contract ERC777UpgradeSafe is Initializable, ContextUpgradeSafe, IERC777, IERC20
      *
      * See {IERC777Sender} and {IERC777Recipient}.
      *
-     * Emits {Minted} and {IERC20-Transfer} events.
+     * Emits {Minted} and {IERC20UpgradeSafe-Transfer} events.
      *
      * Requirements
      *

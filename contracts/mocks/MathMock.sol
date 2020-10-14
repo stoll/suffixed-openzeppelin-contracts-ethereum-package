@@ -18,15 +18,15 @@ contract MathMockUpgradeSafe is Initializable {
     }
 
     function max(uint256 a, uint256 b) public pure returns (uint256) {
-        return Math.max(a, b);
+        return MathUpgradeSafe.max(a, b);
     }
 
     function min(uint256 a, uint256 b) public pure returns (uint256) {
-        return Math.min(a, b);
+        return MathUpgradeSafe.min(a, b);
     }
 
     function average(uint256 a, uint256 b) public pure returns (uint256) {
-        return Math.average(a, b);
+        return MathUpgradeSafe.average(a, b);
     }
 
     uint256[50] private __gap;

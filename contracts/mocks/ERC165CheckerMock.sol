@@ -17,7 +17,7 @@ contract ERC165CheckerMockUpgradeSafe is Initializable {
 
     }
 
-    using ERC165Checker for address;
+    using ERC165CheckerUpgradeSafe for address;
 
     function supportsERC165(address account) public view returns (bool) {
         return account.supportsERC165();

@@ -17,9 +17,9 @@ contract CountersMockUpgradeSafe is Initializable {
 
     }
 
-    using Counters for Counters.Counter;
+    using CountersUpgradeSafe for CountersUpgradeSafe.Counter;
 
-    Counters.Counter private _counter;
+    CountersUpgradeSafe.Counter private _counter;
 
     function current() public view returns (uint256) {
         return _counter.current();

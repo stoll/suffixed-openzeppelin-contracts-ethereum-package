@@ -17,7 +17,7 @@ contract ECDSAMockUpgradeSafe is Initializable {
 
     }
 
-    using ECDSA for bytes32;
+    using ECDSAUpgradeSafe for bytes32;
 
     function recover(bytes32 hash, bytes memory signature) public pure returns (address) {
         return hash.recover(signature);

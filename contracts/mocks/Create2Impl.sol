@@ -19,20 +19,20 @@ contract Create2MockUpgradeSafe is Initializable {
     }
 
     function deploy(uint256 value, bytes32 salt, bytes memory code) public {
-        Create2.deploy(value, salt, code);
+        Create2UpgradeSafe.deploy(value, salt, code);
     }
 
     function deployERC1820Implementer(uint256 value, bytes32 salt) public {
         // solhint-disable-next-line indent
-        Create2.deploy(value, salt, type(ERC1820ImplementerUpgradeSafe).creationCode);
+        Create2UpgradeSafe.deploy(value, salt, type(ERC1820ImplementerUpgradeSafe).creationCode);
     }
 
     function computeAddress(bytes32 salt, bytes32 codeHash) public view returns (address) {
-        return Create2.computeAddress(salt, codeHash);
+        return Create2UpgradeSafe.computeAddress(salt, codeHash);
     }
 
     function computeAddressWithDeployer(bytes32 salt, bytes32 codeHash, address deployer) public pure returns (address) {
-        return Create2.computeAddress(salt, codeHash, deployer);
+        return Create2UpgradeSafe.computeAddress(salt, codeHash, deployer);
     }
 
     receive() payable external {}

@@ -4,7 +4,7 @@ import "../utils/Arrays.sol";
 import "../Initializable.sol";
 
 contract ArraysMockUpgradeSafe is Initializable {
-    using Arrays for uint256[];
+    using ArraysUpgradeSafe for uint256[];
 
     uint256[] private _array;
 

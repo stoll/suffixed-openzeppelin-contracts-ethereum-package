@@ -18,7 +18,7 @@ import "../Initializable.sol";
  * function.
  */
 contract PaymentSplitterUpgradeSafe is Initializable, ContextUpgradeSafe {
-    using SafeMath for uint256;
+    using SafeMathUpgradeSafe for uint256;
 
     event PayeeAdded(address account, uint256 shares);
     event PaymentReleased(address to, uint256 amount);

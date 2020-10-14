@@ -13,8 +13,8 @@ import "../math/SafeMath.sol";
  * overflow check, thereby saving gas. This does assume however correct usage, in that the underlying `_value` is never
  * directly accessed.
  */
-library Counters {
-    using SafeMath for uint256;
+library CountersUpgradeSafe {
+    using SafeMathUpgradeSafe for uint256;
 
     struct Counter {
         // This variable should never be directly accessed by users of the library: interactions must be restricted to

@@ -10,7 +10,7 @@ pragma solidity ^0.6.0;
  *
  * See {IERC1820Registry} and {ERC1820Implementer}.
  */
-interface IERC777Recipient {
+interface IERC777RecipientUpgradeSafe {
     /**
      * @dev Called by an {IERC777} token contract whenever tokens are being
      * moved or created into a registered account (`to`). The type of operation

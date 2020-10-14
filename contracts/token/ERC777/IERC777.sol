@@ -9,7 +9,7 @@ pragma solidity ^0.6.0;
  * for the associated interfaces in said registry. See {IERC1820Registry} and
  * {ERC1820Implementer}.
  */
-interface IERC777 {
+interface IERC777UpgradeSafe {
     /**
      * @dev Returns the name of the token.
      */
@@ -45,7 +45,7 @@ interface IERC777 {
      *
      * If send or receive hooks are registered for the caller and `recipient`,
      * the corresponding functions will be called with `data` and empty
-     * `operatorData`. See {IERC777Sender} and {IERC777Recipient}.
+     * `operatorData`. See {IERC777UpgradeSafeSender} and {IERC777Recipient}.
      *
      * Emits a {Sent} event.
      *

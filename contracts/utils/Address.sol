@@ -3,7 +3,7 @@ pragma solidity ^0.6.2;
 /**
  * @dev Collection of functions related to the address type
  */
-library Address {
+library AddressUpgradeSafe {
     /**
      * @dev Returns true if `account` is a contract.
      *

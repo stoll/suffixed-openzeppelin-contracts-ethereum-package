@@ -14,7 +14,7 @@ pragma solidity ^0.6.0;
  *
  * For an in-depth explanation and source code analysis, see the EIP text.
  */
-interface IERC1820Registry {
+interface IERC1820RegistryUpgradeSafe {
     /**
      * @dev Sets `newManager` as the manager for `account`. A manager of an
      * account is able to set interface implementers for it.

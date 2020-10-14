@@ -8,7 +8,7 @@ import "../introspection/IERC1820Registry.sol";
 import "../introspection/ERC1820Implementer.sol";
 import "../Initializable.sol";
 
-contract ERC777SenderRecipientMockUpgradeSafe is Initializable, ContextUpgradeSafe, IERC777Sender, IERC777Recipient, ERC1820ImplementerUpgradeSafe {
+contract ERC777SenderRecipientMockUpgradeSafe is Initializable, ContextUpgradeSafe, IERC777SenderUpgradeSafe, IERC777RecipientUpgradeSafe, ERC1820ImplementerUpgradeSafe {
     constructor() public  {
         __ERC777SenderRecipientMock_init();
     }
@@ -52,7 +52,7 @@ contract ERC777SenderRecipientMockUpgradeSafe is Initializable, ContextUpgradeSa
     bool private _shouldRevertSend;
     bool private _shouldRevertReceive;
 
-    IERC1820Registry private _erc1820 ;
+    IERC1820RegistryUpgradeSafe private _erc1820 ;
 
     bytes32 constant private _TOKENS_SENDER_INTERFACE_HASH = keccak256("ERC777TokensSender");
     bytes32 constant private _TOKENS_RECIPIENT_INTERFACE_HASH = keccak256("ERC777TokensRecipient");
@@ -69,7 +69,7 @@ contract ERC777SenderRecipientMockUpgradeSafe is Initializable, ContextUpgradeSa
             revert();
         }
 
-        IERC777 token = IERC777(_msgSender());
+        IERC777UpgradeSafe token = IERC777UpgradeSafe(_msgSender());
 
         uint256 fromBalance = token.balanceOf(from);
         // when called due to burn, to will be the zero address, which will have a balance of 0
@@ -100,7 +100,7 @@ contract ERC777SenderRecipientMockUpgradeSafe is Initializable, ContextUpgradeSa
             revert();
         }
 
-        IERC777 token = IERC777(_msgSender());
+        IERC777UpgradeSafe token = IERC777UpgradeSafe(_msgSender());
 
         uint256 fromBalance = token.balanceOf(from);
         // when called due to burn, to will be the zero address, which will have a balance of 0
@@ -153,12 +153,12 @@ contract ERC777SenderRecipientMockUpgradeSafe is Initializable, ContextUpgradeSa
         _shouldRevertReceive = shouldRevert;
     }
 
-    function send(IERC777 token, address to, uint256 amount, bytes memory data) public {
+    function send(IERC777UpgradeSafe token, address to, uint256 amount, bytes memory data) public {
         // This is 777's send function, not the Solidity send function
         token.send(to, amount, data); // solhint-disable-line check-send-result
     }
 
-    function burn(IERC777 token, uint256 amount, bytes memory data) public {
+    function burn(IERC777UpgradeSafe token, uint256 amount, bytes memory data) public {
         token.burn(amount, data);
     }
 

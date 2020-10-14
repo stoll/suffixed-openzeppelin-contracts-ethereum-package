@@ -3,7 +3,7 @@ pragma solidity ^0.6.0;
 /**
  * @dev Standard math utilities missing in the Solidity language.
  */
-library Math {
+library MathUpgradeSafe {
     /**
      * @dev Returns the largest of two numbers.
      */

@@ -13,10 +13,10 @@ import "../../Initializable.sol";
  * For a more complete vesting schedule, see {TokenVesting}.
  */
 contract TokenTimelockUpgradeSafe is Initializable {
-    using SafeERC20 for IERC20;
+    using SafeERC20UpgradeSafe for IERC20UpgradeSafe;
 
     // ERC20 basic token contract being held
-    IERC20 private _token;
+    IERC20UpgradeSafe private _token;
 
     // beneficiary of tokens after they are released
     address private _beneficiary;
@@ -25,11 +25,11 @@ contract TokenTimelockUpgradeSafe is Initializable {
     uint256 private _releaseTime;
 
 
-    function __TokenTimelock_init(IERC20 token, address beneficiary, uint256 releaseTime) internal initializer {
+    function __TokenTimelock_init(IERC20UpgradeSafe token, address beneficiary, uint256 releaseTime) internal initializer {
         __TokenTimelock_init_unchained(token, beneficiary, releaseTime);
     }
 
-    function __TokenTimelock_init_unchained(IERC20 token, address beneficiary, uint256 releaseTime) internal initializer {
+    function __TokenTimelock_init_unchained(IERC20UpgradeSafe token, address beneficiary, uint256 releaseTime) internal initializer {
 
 
         // solhint-disable-next-line not-rely-on-time
@@ -44,7 +44,7 @@ contract TokenTimelockUpgradeSafe is Initializable {
     /**
      * @return the token being held.
      */
-    function token() public view returns (IERC20) {
+    function token() public view returns (IERC20UpgradeSafe) {
         return _token;
     }
 

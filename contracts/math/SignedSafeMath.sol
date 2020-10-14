@@ -4,7 +4,7 @@ pragma solidity ^0.6.0;
  * @title SignedSafeMath
  * @dev Signed math operations with safety checks that revert on error.
  */
-library SignedSafeMath {
+library SignedSafeMathUpgradeSafe {
     int256 constant private _INT256_MIN = -2**255;
 
     /**

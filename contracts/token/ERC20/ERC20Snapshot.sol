@@ -44,9 +44,9 @@ abstract contract ERC20SnapshotUpgradeSafe is Initializable, ERC20UpgradeSafe {
     // Inspired by Jordi Baylina's MiniMeToken to record historical balances:
     // https://github.com/Giveth/minimd/blob/ea04d950eea153a04c51fa510b068b9dded390cb/contracts/MiniMeToken.sol
 
-    using SafeMath for uint256;
-    using Arrays for uint256[];
-    using Counters for Counters.Counter;
+    using SafeMathUpgradeSafe for uint256;
+    using ArraysUpgradeSafe for uint256[];
+    using CountersUpgradeSafe for CountersUpgradeSafe.Counter;
 
     // Snapshotted values have arrays of ids and the value corresponding to that id. These could be an array of a
     // Snapshot struct, but that would impede usage of functions that work on an array.
@@ -59,7 +59,7 @@ abstract contract ERC20SnapshotUpgradeSafe is Initializable, ERC20UpgradeSafe {
     Snapshots private _totalSupplySnapshots;
 
     // Snapshot ids increase monotonically, with the first value being 1. An id of 0 is invalid.
-    Counters.Counter private _currentSnapshotId;
+    CountersUpgradeSafe.Counter private _currentSnapshotId;
 
     /**
      * @dev Emitted by {_snapshot} when a snapshot identified by `id` is created.

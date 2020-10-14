@@ -10,7 +10,7 @@ pragma solidity ^0.6.0;
  *
  * See {IERC1820Registry} and {ERC1820Implementer}.
  */
-interface IERC777Sender {
+interface IERC777SenderUpgradeSafe {
     /**
      * @dev Called by an {IERC777} token contract whenever a registered holder's
      * (`from`) tokens are about to be moved or destroyed. The type of operation

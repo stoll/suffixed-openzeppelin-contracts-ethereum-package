@@ -17,8 +17,8 @@ import "../Initializable.sol";
  * internal {_mint} function.
  */
 contract GSNRecipientERC20FeeUpgradeSafe is Initializable, GSNRecipientUpgradeSafe {
-    using SafeERC20 for __unstable__ERC20Owned;
-    using SafeMath for uint256;
+    using SafeERC20UpgradeSafe for __unstable__ERC20Owned;
+    using SafeMathUpgradeSafe for uint256;
 
     enum GSNRecipientERC20FeeErrorCodes {
         INSUFFICIENT_BALANCE
@@ -47,8 +47,8 @@ contract GSNRecipientERC20FeeUpgradeSafe is Initializable, GSNRecipientUpgradeSa
     /**
      * @dev Returns the gas payment token.
      */
-    function token() public view returns (IERC20) {
-        return IERC20(_token);
+    function token() public view returns (IERC20UpgradeSafe) {
+        return IERC20UpgradeSafe(_token);
     }
 
     /**

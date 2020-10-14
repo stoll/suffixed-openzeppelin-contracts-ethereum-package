@@ -9,7 +9,7 @@ pragma solidity ^0.6.0;
  * See the https://eips.ethereum.org/EIPS/eip-1014#motivation[EIP] for more
  * information.
  */
-library Create2 {
+library Create2UpgradeSafe {
     /**
      * @dev Deploys a contract using `CREATE2`. The address where the contract
      * will be deployed can be known in advance via {computeAddress}.

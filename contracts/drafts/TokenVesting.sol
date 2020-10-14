@@ -19,7 +19,7 @@ contract TokenVestingUpgradeSafe is Initializable, OwnableUpgradeSafe {
     // solhint-disable not-rely-on-time
 
     using SafeMath for uint256;
-    using SafeERC20 for IERC20;
+    using SafeERC20UpgradeSafe for IERC20UpgradeSafe;
 
     event TokensReleased(address token, uint256 amount);
     event TokenVestingRevoked(address token);
@@ -126,7 +126,7 @@ contract TokenVestingUpgradeSafe is Initializable, OwnableUpgradeSafe {
      * @notice Transfers vested tokens to beneficiary.
      * @param token ERC20 token which is being vested
      */
-    function release(IERC20 token) public {
+    function release(IERC20UpgradeSafe token) public {
         uint256 unreleased = _releasableAmount(token);
 
         require(unreleased > 0, "TokenVesting: no tokens are due");
@@ -143,7 +143,7 @@ contract TokenVestingUpgradeSafe is Initializable, OwnableUpgradeSafe {
      * remain in the contract, the rest are returned to the owner.
      * @param token ERC20 token which is being vested
      */
-    function revoke(IERC20 token) public onlyOwner {
+    function revoke(IERC20UpgradeSafe token) public onlyOwner {
         require(_revocable, "TokenVesting: cannot revoke");
         require(!_revoked[address(token)], "TokenVesting: token already revoked");
 
@@ -163,7 +163,7 @@ contract TokenVestingUpgradeSafe is Initializable, OwnableUpgradeSafe {
      * @dev Calculates the amount that has already vested but hasn't been released yet.
      * @param token ERC20 token which is being vested
      */
-    function _releasableAmount(IERC20 token) private view returns (uint256) {
+    function _releasableAmount(IERC20UpgradeSafe token) private view returns (uint256) {
         return _vestedAmount(token).sub(_released[address(token)]);
     }
 
@@ -171,7 +171,7 @@ contract TokenVestingUpgradeSafe is Initializable, OwnableUpgradeSafe {
      * @dev Calculates the amount that has already vested.
      * @param token ERC20 token which is being vested
      */
-    function _vestedAmount(IERC20 token) private view returns (uint256) {
+    function _vestedAmount(IERC20UpgradeSafe token) private view returns (uint256) {
         uint256 currentBalance = token.balanceOf(address(this));
         uint256 totalBalance = currentBalance.add(_released[address(token)]);
 

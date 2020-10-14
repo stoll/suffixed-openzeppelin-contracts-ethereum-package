@@ -18,23 +18,23 @@ contract SafeMathMockUpgradeSafe is Initializable {
     }
 
     function mul(uint256 a, uint256 b) public pure returns (uint256) {
-        return SafeMath.mul(a, b);
+        return SafeMathUpgradeSafe.mul(a, b);
     }
 
     function div(uint256 a, uint256 b) public pure returns (uint256) {
-        return SafeMath.div(a, b);
+        return SafeMathUpgradeSafe.div(a, b);
     }
 
     function sub(uint256 a, uint256 b) public pure returns (uint256) {
-        return SafeMath.sub(a, b);
+        return SafeMathUpgradeSafe.sub(a, b);
     }
 
     function add(uint256 a, uint256 b) public pure returns (uint256) {
-        return SafeMath.add(a, b);
+        return SafeMathUpgradeSafe.add(a, b);
     }
 
     function mod(uint256 a, uint256 b) public pure returns (uint256) {
-        return SafeMath.mod(a, b);
+        return SafeMathUpgradeSafe.mod(a, b);
     }
 
     uint256[50] private __gap;
