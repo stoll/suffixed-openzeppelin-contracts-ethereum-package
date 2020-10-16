@@ -1,7 +1,7 @@
 {
-  "name": "@openzeppelin/contracts-ethereum-package",
-  "version": "3.0.0",
-  "description": "Secure Smart Contract library for Solidity",
+  "name": "@stoll/openzeppelin-contracts-ethereum-package",
+  "version": "4.0.1",
+  "description": "Secure (Suffixed) Upgradeable Smart Contract library for Solidity",
   "files": [
     "/.openzeppelin",
     "/contracts/**/*.sol",
@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/OpenZeppelin/openzeppelin-contracts.git"
+    "url": "https://github.com/stoll/openzeppelin-contracts-ethereum-package.git"
   },
   "keywords": [
     "solidity",
@@ -42,7 +42,7 @@
   "author": "OpenZeppelin Community <maintainers@openzeppelin.org>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/OpenZeppelin/openzeppelin-contracts/issues"
+    "url": "https://github.com/stoll/openzeppelin-contracts-ethereum-package/issues"
   },
   "homepage": "https://openzeppelin.com/contracts/",
   "devDependencies": {
